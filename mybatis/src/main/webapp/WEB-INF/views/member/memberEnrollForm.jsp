@@ -16,7 +16,7 @@
 	<div class="outer">
 		<br>
 		<h2 align="center">회원가입</h2>
-		<form action="" method="post" id="enrollForm">
+		<form action="insert.me" method="post" id="enrollForm">
 			<table align="center" class="enroll">
 				<tr>
 					<td>* ID</td>

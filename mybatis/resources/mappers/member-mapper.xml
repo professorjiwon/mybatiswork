@@ -21,4 +21,9 @@
 	 	  from member
 	 	 where user_id = #{userId}  
 	 </select>
+	 
+	 <insert id="insertMember" parameterType="Member">
+	 	insert into member(user_id, user_pwd, user_name, email, birthday, gender, phone, address)
+	 	            values(#{userId}, #{userPwd}, #{userName}, #{email}, #{birthday}, #{gender}, #{phone}, #{address})
+	 </insert>
 </mapper>  

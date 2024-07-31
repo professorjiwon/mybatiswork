@@ -29,4 +29,14 @@
     <servlet-name>IdCheckController</servlet-name>
     <url-pattern>/idCheck.me</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MemberInsertController</display-name>
+    <servlet-name>MemberInsertController</servlet-name>
+    <servlet-class>com.study.mybatis.member.controller.MemberInsertController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MemberInsertController</servlet-name>
+    <url-pattern>/insert.me</url-pattern>
+  </servlet-mapping>
 </web-app>
