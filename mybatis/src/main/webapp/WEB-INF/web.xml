@@ -19,4 +19,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>IdCheckController</display-name>
+    <servlet-name>IdCheckController</servlet-name>
+    <servlet-class>com.study.mybatis.member.controller.IdCheckController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IdCheckController</servlet-name>
+    <url-pattern>/idCheck.me</url-pattern>
+  </servlet-mapping>
 </web-app>
