@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,7 @@
         cursor: pointer;
     }
     .nav-area{
+    	margin-top: 20px;
         background-color: black;
         color: white;
         height: 50px;
@@ -27,46 +29,58 @@
     .menu:hover {
         background-color: gray;
     }
+   /*  menubar.jsp */
+    .outer {
+        width: 900px;
+        margin: 0 auto;
+    }
 </style>
 </head>
 <body>
     <h1 align="center">Welcom to MyBatis</h1>
 
     <div class="login-area" align="right">
-        <form action="" method="post">
-            <table>
-                <tr>
-                    <td>아이디</td>
-                    <td><input name="userId" required></td>
-                    <td rowspan="2"><button>로그인</button></td>
-                </tr>
-                <tr>
-                    <td>비밀번호</td>
-                    <td><input type="password" name="userPwd" required></td>
-                </tr>
-                <tr>
-                    <td colspan="3">
-                        <a href="">회원가입</a>
-                        <a href="">아이디/비밀번호 찾기</a>
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </div>
-
-    <div class="login-area" align="right">
-        <table>
-            <tr>
-                <td colspan="2">
-                    <h3>xxx님 환영합니다</h3>
-                </td>
-            </tr>
-            <tr>
-                <td><a href="">마이페이지</a></td>
-                <td><a href="">로그아웃</a></td>
-            </tr>
-        </table>
-    </div>
+    	<c:choose>  		
+    		<c:when test="${ empty loginUser }">
+    			<!-- 로그인 전 -->
+		        <form action="" method="post">
+		            <table>
+		                <tr>
+		                    <td>아이디</td>
+		                    <td><input name="userId" required></td>
+		                    <td rowspan="2"><button style="height:50px;">로그인</button></td>
+		                </tr>
+		                <tr>
+		                    <td>비밀번호</td>
+		                    <td><input type="password" name="userPwd" required></td>
+		                </tr>
+		                <tr>
+		                    <td colspan="3" style="text-align:center;">
+		                        <a href="enrollForm.me">회원가입</a>&emsp;&emsp;
+		                        <a href="">아이디/비밀번호 찾기</a>
+		                    </td>
+		                </tr>
+		            </table>
+		        </form>
+			</c:when>
+			<c:otherwise>
+				<!-- 로그인 후 -->
+			    <div>
+			        <table>
+			            <tr>
+			                <td colspan="2">
+			                    <h3>xxx님 환영합니다</h3>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td><a href="">마이페이지</a></td>
+			                <td><a href="">로그아웃</a></td>
+			            </tr>
+			        </table>
+			    </div>
+    		</c:otherwise>
+		</c:choose>
+	</div>
 
     <nav class="nav-area" align="center">
         <div class="menu">HOME</div>
