@@ -5,9 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Enroll Form</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <style>
 	.enroll td {height:30px;}
 </style>
+
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp" />
@@ -19,7 +21,7 @@
 				<tr>
 					<td>* ID</td>
 					<td>
-						<input name="userId" required>
+						<input name="userId" id="id" required>
 						<div id="checkResult" style="font-size: 0.8em; display: none;"></div>
 					</td>
 				</tr>
@@ -63,5 +65,37 @@
 			</table>
 		</form>
 	</div>
+	
+	<script>
+		$(() => {
+			const $idInput = $("#id");
+			$idInput.keyup(function() {
+				if($idInput.val().length >= 5) {
+					$.ajax({
+						url: "idCheck.me",
+						data : {id : $idInput.val()},
+						success : function(result) {
+							console.log(result);
+							if(result == 'idN') {
+								$("#checkResult").show();
+								$("#checkResult").css("color","red").text("중복된 아이디가 존재합니다. 다시 입력하세요");
+								$("#enrollForm :submit").attr("disabled", true);
+							} else {
+								$("#checkResult").show();
+								$("#checkResult").css("color","green").text("멋진 아이디 입니다.");
+								$("#enrollForm :submit").attr("disabled", false);
+							}
+						},
+						error : function() {
+							console.log("아이디 중복체크 ajax 통신 실패");
+						}
+					})
+				} else {
+					$("#checkResult").hide();
+					$("#enrollForm :submit").attr("disabled", true);
+				}
+			})
+		})
+	</script>
 </body>
 </html>
