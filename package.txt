@@ -1,0 +1,11 @@
+com.study.mybatis.board.controller  (servlet 파일들)
+com.study.mybatis.board.dao         (기존Mgr mybatis에 mgr연결)
+com.study.mybatis.board.service     (DB실행결과 리턴)
+com.study.mybatis.board.vo           (bean파일들)
+
+com.study.mybatis.member.controller
+com.study.mybatis.member.dao
+com.study.mybatis.member.service
+com.study.mybatis.member.vo
+	    
+com.study.mybatis.common
