@@ -7,11 +7,11 @@
 	<!-- namespace : 해당 mapper파일의 고유한 별칭  -->
 	<!-- 
 		* DML문일 경우
-		<insert|update|delete id="식별자" [parameterType="전달받을 자바타입(풀클래스명)|별칭"]>
+		<insert|update|delete id="식별자">
 		 => 실행결과는 int(0|1)이기 때문에 resultType 또는 resultMap에 대한 속성은 쓰지 않아도 된다
 		 
 		* select문일 경우
-		<select id="식별자" [parameterType="전달받을 자바타입(풀클래스명)|별칭"]>
+		<select id="식별자">
 			resultType="조회결과를 반환하고자하는 자바타입" | resultMap="조회결과를 뽑아서 매핑할 resultMap의 id"
 		</select>
 	 -->
@@ -22,7 +22,7 @@
 	 	 where user_id = #{userId}  
 	 </select>
 	 
-	 <insert id="insertMember" parameterType="Member">
+	 <insert id="insertMember">
 	 	insert into member(user_id, user_pwd, user_name, email, birthday, gender, phone, address)
 	 	            values(#{userId}, #{userPwd}, #{userName}, #{email}, #{birthday}, #{gender}, #{phone}, #{address})
 	 </insert>
