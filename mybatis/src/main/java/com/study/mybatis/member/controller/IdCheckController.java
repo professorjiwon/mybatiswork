@@ -7,18 +7,19 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Servlet implementation class IdCheckController
- */
+import com.study.mybatis.member.sevice.MemberServiceImpl;
+
 public class IdCheckController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String userId = request.getParameter("id");
+		
+		int result = new MemberServiceImpl().checkId(userId);
+		if(result > 0) {
+			response.getWriter().print("idN");
+		} else {
+			response.getWriter().print("idY");
+		}
 	}
-
 }
