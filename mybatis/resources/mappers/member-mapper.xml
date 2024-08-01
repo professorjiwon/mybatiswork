@@ -16,6 +16,30 @@
 		</select>
 	 -->
 	 
+	 <!-- 
+	 * resultMap 마이바티스의 핵심 기능 중 하나
+	   ResultSet으로부터 조회된 컬럼값을 하나씩 뽑아서 내가 지정한 bean객체에 담는 역할
+	   <resultMap id="식별자" type="조회결과를 담아서 반환하고자하는 bean객체의 타입(풀클래스명|별칭)">
+	   		<result column = "DB의 컬럼명" property = "bean객체의 필드명" />
+	   		<result column = "DB의 컬럼명" property = "bean객체의 필드명" />
+	   		<result column = "DB의 컬럼명" property = "bean객체의 필드명" />
+	   		...
+	   </resultMap>
+	  -->
+	  <resultMap id="memberResultSet" type="com.study.mybatis.member.vo.Member">
+	  		<result column="user_id" property="userId" />
+	  		<result column="USER_PWD" property="userPwd" />
+	  		<result column="user_name" property="userName" />
+	  		<result column="email" property="email" />
+	  		<result column="birtyday" property="birtyday" />
+	  		<result column="gender" property="gender" />
+	  		<result column="phone" property="phone" />
+	  		<result column="address" property="address" />
+	  		<result column="enroll_date" property="enrollDate" />
+	  		<result column="modify_date" property="modifyDate" />
+	  		<result column="status" property="status" />
+	  </resultMap>
+	 
 	 <select id="checkId" resultType = "_int">
 	 	select count(*)
 	 	  from member
@@ -26,4 +50,10 @@
 	 	insert into member(user_id, user_pwd, user_name, email, birthday, gender, phone, address)
 	 	            values(#{userId}, #{userPwd}, #{userName}, #{email}, #{birthday}, #{gender}, #{phone}, #{address})
 	 </insert>
+	 
+	 <select id="loginMember" resultMap = "memberResultSet">
+	 	select *
+	 	  from member
+	 	 where user_id = #{userId} and user_pwd = #{userPwd} and status = 'Y' 
+	 </select>
 </mapper>  
