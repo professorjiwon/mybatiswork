@@ -28,6 +28,7 @@
     }
     .menu:hover {
         background-color: gray;
+        cursor: pointer;
     }
    /*  menubar.jsp */
     .outer {

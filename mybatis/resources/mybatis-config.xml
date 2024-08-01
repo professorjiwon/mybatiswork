@@ -39,5 +39,6 @@
     <!-- mappers : 실행할 sql문들을 기록 해둔 mapper파일을 등록하는 영역 -->
   <mappers>
     <mapper resource="/mappers/member-mapper.xml"/>
+    <mapper resource="/mappers/board-mapper.xml"/>
   </mappers>
 </configuration>
