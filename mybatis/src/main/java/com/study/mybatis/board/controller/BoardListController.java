@@ -6,8 +6,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.study.mybatis.board.service.BoardServiceImpl;
+import com.study.mybatis.board.vo.Board;
 import com.study.mybatis.common.template.Pagination;
 import com.study.mybatis.common.vo.PageInfo;
 
@@ -19,7 +21,7 @@ public class BoardListController extends HttpServlet {
 		int nowPage = Integer.parseInt(request.getParameter("nowPage"));
 		PageInfo pi = Pagination.getPageInfo(totalRecord, nowPage, 10, 5);
 		
-		System.out.println("paging처리 : " + pi);
+		ArrayList<Board> list = new BoardServiceImpl().selectList(pi);
 		
 	}
 
