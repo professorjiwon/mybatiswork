@@ -12,6 +12,7 @@
 	<!-- typeAliases : servlet, bean클래스의 풀클래스명 별칭을 등록할 수 있는 영역-->
 	<typeAliases>
 		<typeAlias type="com.study.mybatis.member.vo.Member" alias="Member"/>
+		<typeAlias type="com.study.mybatis.board.vo.Board" alias="Board"/>
 	</typeAliases>
 	
 	<!-- environments : mybatis에서 연동하는 DB정보들을 등록하는 영역 -->
