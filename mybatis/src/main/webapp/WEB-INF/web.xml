@@ -59,4 +59,14 @@
     <servlet-name>LogoutController</servlet-name>
     <url-pattern>/logout.me</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardListController</display-name>
+    <servlet-name>BoardListController</servlet-name>
+    <servlet-class>com.study.mybatis.board.controller.BoardListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardListController</servlet-name>
+    <url-pattern>/list.bo</url-pattern>
+  </servlet-mapping>
 </web-app>
