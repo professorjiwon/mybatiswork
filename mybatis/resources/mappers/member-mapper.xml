@@ -26,7 +26,7 @@
 	   		...
 	   </resultMap>
 	  -->
-	  <resultMap id="memberResultSet" type="com.study.mybatis.member.vo.Member">
+	  <resultMap id="memberResultSet" type="Member">
 	  		<result column="user_id" property="userId" />
 	  		<result column="USER_PWD" property="userPwd" />
 	  		<result column="user_name" property="userName" />
