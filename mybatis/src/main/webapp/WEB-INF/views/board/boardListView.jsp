@@ -45,9 +45,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="b" items="${ list }">
+				<c:forEach var="b" items="${ list }" varStatus="s">
 					<tr>
-						<td>${ b.boardNo }</td>
+						<td>${pi.totalRecord-((pi.nowPage-1)*pi.numPerPage)-s.index}</td>
 						<td style="text-align: left; padding-left: 10px;">
 							<a href="detail.bo?bno=${b.boardNo}">${ b.boardTitle }</a>
 						</td>
@@ -74,10 +74,24 @@
 			<c:forEach var="p" begin="${ pi.startPage }" end = "${ pi.endPage }">
 				<c:choose>
 					<c:when test="${empty keyField}">
-						<a href="list.bo?nowPage=${p}">[${p}]</a>
+						<c:choose>
+							<c:when test="${p eq pi.nowPage}">
+								<a href="list.bo?nowPage=${p}" style="color:lightskyblue">[${p}]</a>
+							</c:when>
+							<c:otherwise>
+								<a href="list.bo?nowPage=${p}">[${p}]</a>
+							</c:otherwise>	
+						</c:choose>
 					</c:when>
 					<c:otherwise>
-						<a href="search.bo?nowPage=${p}&keyField=${keyField}&keyword=${keyword}">[${p}]</a>
+						<c:choose>
+							<c:when test="${p eq pi.nowPage}">
+								<a href="search.bo?nowPage=${p}&keyField=${keyField}&keyword=${keyword}" style="color:lightskyblue">[${p}]</a>
+							</c:when>
+							<c:otherwise>
+								<a href="search.bo?nowPage=${p}&keyField=${keyField}&keyword=${keyword}">[${p}]</a>
+							</c:otherwise>
+						</c:choose>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>

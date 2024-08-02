@@ -19,7 +19,7 @@ public class BoardListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int totalRecord = new BoardServiceImpl().selectTotalRecord();
 		int nowPage = Integer.parseInt(request.getParameter("nowPage"));
-		PageInfo pi = Pagination.getPageInfo(totalRecord, nowPage, 10, 5);
+		PageInfo pi = Pagination.getPageInfo(totalRecord, nowPage, 5, 3);
 		
 		ArrayList<Board> list = new BoardServiceImpl().selectList(pi);
 		request.setAttribute("pi", pi);
