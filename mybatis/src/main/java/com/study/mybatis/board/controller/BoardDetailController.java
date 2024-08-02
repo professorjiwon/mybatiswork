@@ -6,9 +6,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.study.mybatis.board.service.*;
 import com.study.mybatis.board.vo.Board;
+import com.study.mybatis.board.vo.Reply;
 
 public class BoardDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -21,9 +23,16 @@ public class BoardDetailController extends HttpServlet {
 		// 1. 조회수 증가
 		int result = bService.increaseCount(boardNo);
 		
-		// 2. 상세 조회
+		
 		if(result > 0) {
+			// 2. 상세 조회
 			Board b = bService.selectBoard(boardNo);
+			
+			// 3. 해당글에 달린 댓글 리스트 조회
+			ArrayList<Reply> rlist = bService.selectReplyList(boardNo);
+			
+			request.setAttribute("b", b);
+			request.setAttribute("rlist", rlist);
 			
 			request.getRequestDispatcher("WEB-INF/views/board/boardDetailView.jsp").forward(request, response);
 		} else {

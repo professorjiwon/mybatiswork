@@ -13,6 +13,13 @@
 		<result column="create_date" property="createDate"/>
 	</resultMap>
 	
+	<resultMap type="Reply" id="replyResultSet">
+		<result column="reply_no" property="replyNo"/>
+		<result column="reply_writer" property="replyWriter"/>
+		<result column="reply_content" property="replyContent"/>
+		<result column="create_date" property="createDate"/>
+	</resultMap>
+	
 	<select id="selectTotalRecord" resultType="_int">
 		select count(*)
 		  from board
@@ -39,8 +46,12 @@
 		 where board_no = #{boardNo} 
 	       and status = 'Y'
 	</select>
+	
+	<select id="selectReplyList" resultMap="replyResultSet">
+		select *
+		  from reply
+		 where ref_bno = #{boardNo}
+		   and status = 'Y'
+		 order by reply_no desc 
+	</select>
 </mapper>
-
-
-
-

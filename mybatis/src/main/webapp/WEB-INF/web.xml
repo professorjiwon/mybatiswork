@@ -79,4 +79,14 @@
     <servlet-name>BoardDetailController</servlet-name>
     <url-pattern>/detail.bo</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardSearchController</display-name>
+    <servlet-name>BoardSearchController</servlet-name>
+    <servlet-class>com.study.mybatis.board.controller.BoardSearchController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardSearchController</servlet-name>
+    <url-pattern>/search.bo</url-pattern>
+  </servlet-mapping>
 </web-app>

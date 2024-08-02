@@ -13,6 +13,7 @@
 	<typeAliases>
 		<typeAlias type="com.study.mybatis.member.vo.Member" alias="Member"/>
 		<typeAlias type="com.study.mybatis.board.vo.Board" alias="Board"/>
+		<typeAlias type="com.study.mybatis.board.vo.Reply" alias="Reply"/>
 	</typeAliases>
 	
 	<!-- environments : mybatis에서 연동하는 DB정보들을 등록하는 영역 -->
