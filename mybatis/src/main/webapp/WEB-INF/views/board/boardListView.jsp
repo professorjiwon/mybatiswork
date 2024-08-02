@@ -49,50 +49,7 @@
 					<tr>
 						<td>${ b.boardNo }</td>
 						<td style="text-align: left; padding-left: 10px;">
-							<a href="detail.do?bno=${b.boardNo}">${ b.boardTitle }</a>
-						</td>
-						<td>${ b.boardWriter }</td>
-						<td>${ b.count }</td>
-						<td>${ b.createDate.substring(0,10) }</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		
-		<div id="paging-area">
-			<c:if test="${ pi.nowPage ne 1 }">
-				<a href="list.bo?nowPage=${ pi.nowPage - 1 }">[이전]</a>
-			</c:if>
-			
-			<c:forEach var="p" begin="${ pi.startPage }" end = "${ pi.endPage }">
-				<a href="list.bo?nowPage=${p}">[${p}]</a>
-			</c:forEach>
-			
-			<c:if test="${ pi.nowPage ne pi.totalPage }">
-				<a href="list.bo?nowPage=${ pi.nowPage + 1 }">[다음]</a>
-			</c:if>
-		</div>
-		
-		<div id="search-area">
-			<form action="search.bo">
-				<select name="keyField">
-					<option value="writer">작성자</option>
-					<option value="title">제목</option>
-					<option value="content">내용</option>
-				</select>
-				<input name="keyword" value="${ keyword }">
-				<input type="submit" value="검색">
-				<input type="hidden" name="nowPage" value="1">
-			</form>
-		</div>
-	</div>
-</body>
-</html>
-				<c:forEach var="b" items="${ list }">
-					<tr>
-						<td>${ b.boardNo }</td>
-						<td style="text-align: left; padding-left: 10px;">
-							<a href="detail.do?bno=${b.boardNo}">${ b.boardTitle }</a>
+							<a href="detail.bo?bno=${b.boardNo}">${ b.boardTitle }</a>
 						</td>
 						<td>${ b.boardWriter }</td>
 						<td>${ b.count }</td>

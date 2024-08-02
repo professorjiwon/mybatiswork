@@ -44,6 +44,7 @@
 				<td height="100">DB내용</td>
 			</tr>
 		</table>
+		<br>
 		<table border="1">
 			<tr>
 				<th width="100">댓글작성</th>

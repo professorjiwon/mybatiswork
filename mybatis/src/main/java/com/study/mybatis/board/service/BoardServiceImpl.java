@@ -28,6 +28,27 @@ public class BoardServiceImpl implements BoardService {
 		return list;
 	}
 
+	@Override
+	public int increaseCount(int boardNo) {
+		SqlSession sqlSession = Template.getSqlSession();
+		int result = bDao.increaseCount(sqlSession, boardNo);
+		
+		if(result > 0) {
+			sqlSession.commit();
+		}
+		
+		sqlSession.close();
+		return result;
+	}
+
+	@Override
+	public Board selectBoard(int boardNo) {
+		SqlSession sqlSession = Template.getSqlSession();
+		Board b = bDao.selectBoard(sqlSession, boardNo);
+		sqlSession.close();
+		return b;
+	}
+
 }
 
 

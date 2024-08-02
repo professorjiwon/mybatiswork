@@ -25,4 +25,22 @@
 		 where status = 'Y'
 		 order by board_no desc 
 	</select>
+	
+	<update id="increaseCount">
+		update board
+		   set count = count + 1
+		 where board_no = #{boardNo}
+		   and status = 'Y'  
+	</update>
+	
+	<select id="selectBoard" resultMap="boardResultSet">
+		select *
+		  from board
+		 where board_no = #{boardNo} 
+	       and status = 'Y'
+	</select>
 </mapper>
+
+
+
+
