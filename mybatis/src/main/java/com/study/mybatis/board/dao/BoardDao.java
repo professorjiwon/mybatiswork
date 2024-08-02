@@ -19,7 +19,7 @@ public class BoardDao {
 		// offset : 몇 개의 게시글(레코드)을 건너뛰고 조회할건지에 대한 값
 		/*
 		 ex) numPerPage : 5
-		 						offset(건너뛸숫자)    limit(조회할숫자)
+		 						offset(건너뛸숫자)    limit(조회할숫자. 갯수)
 		 nowPage : 1     1~ 5     0						5
 		 nowPage : 2     6~10     5						5
 		 nowPage : 3    11~15     10					5			 
