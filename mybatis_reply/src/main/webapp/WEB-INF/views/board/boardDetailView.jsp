@@ -1,13 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.study.mybatis.member.vo.*" %>
+<%@ page import="com.study.mybatis.board.vo.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%
+	Member m = (Member)session.getAttribute("loginUser");
+	String id = "";
+	if(m != null) {
+		id = m.getUserId();
+	}
+	
+	Board b = (Board)request.getAttribute("b");
+	int bnum = b.getBoardNo();
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Board List</title>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+	$(() => {
+		let id = "<%=id %>";
+		let bNo = "<%=bnum %>";
+		$("#replyInsert").click(function() {
+			$.ajax({
+				url:"rinsert.bo",
+				data : {
+					content : $("#content").val(),
+					bnum : bNo,
+					userId : id
+				},
+				success:function(result) {
+					console.log(result);
+				},
+				error:function() {
+					console.log("ajax 통신 실패");
+				}
+			})
+		})
+	})
+</script>
 <style>
 	.outer table {
 		border:2px solid ;
@@ -52,7 +85,7 @@
 				<c:when test="${loginUser != null}">
 					<tr>
 						<th width="100">댓글작성</th>
-						<th width="400"><textarea cols="53" rows="3" id="replyContent"></textarea></th>
+						<th width="400"><textarea cols="53" rows="3" id="content"></textarea></th>
 						<th width="100"><button id="replyInsert">등록</button></th>
 					</tr>
 				</c:when>
