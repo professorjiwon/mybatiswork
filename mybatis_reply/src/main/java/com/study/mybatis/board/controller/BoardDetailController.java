@@ -42,15 +42,17 @@ public class BoardDetailController extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int boardNo = Integer.parseInt(request.getParameter("bno"));
 		
-		ArrayList<Reply> rlist = bService.selectReplyList(boardNo);
-		
-		Gson gson = new Gson();
-		String json = gson.toJson(rlist);
-		
-		response.setContentType("application/json");
-		response.getWriter().write(json);
+		  int boardNo = Integer.parseInt(request.getParameter("bno"));
+		  
+		  ArrayList<Reply> rlist = bService.selectReplyList(boardNo);
+		  
+		  Gson gson = new Gson(); String json = gson.toJson(rlist);
+		  
+		  response.setContentType("application/json");
+		  response.getWriter().write(json);
+		 
+
 	}
 
 }

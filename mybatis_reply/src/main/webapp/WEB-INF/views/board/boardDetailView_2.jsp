@@ -1,7 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.study.mybatis.member.vo.*" %>
+<%@ page import="com.study.mybatis.board.vo.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%
+	Member m = (Member)session.getAttribute("loginUser");
+	String id = "";
+	if(m != null) {
+		id = m.getUserId();
+	}
+	
+	Board b = (Board)request.getAttribute("b");
+	int bnum = b.getBoardNo();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,14 +21,16 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 	$(() => {
+		let id = "<%=id %>";
+		let bNo = "<%=bnum %>";
 		$("#replyInsert").click(function() {
-			// serialize() : form안의 input, select, textarea의 value값을 간단하게 표준 url인코딩 형태의 문자열로 만들어줌
-			//               content=내용&bnum=2&userId=user02
-			event.preventDefault();
-			let rdata = $("#rFrm").serialize();
 			$.ajax({
 				url:"rinsert.bo",
-				data : rdata,
+				data : {
+					content : $("#content").val(),
+					bnum : bNo,
+					userId : id
+				},
 				success:function(result) {
 					console.log(result);
 					if(result > 0) {
@@ -34,7 +47,7 @@
 		function replyList() {
 			$.ajax({
 				url:"detail.bo",
-				data:{bno: $("#rhead input[name='bnum']").val() },
+				data:{bno:bNo},
 				type:"post",
 				success:function(result) {
 					console.log(result);
@@ -53,7 +66,7 @@
 				}
 			})
 		}
-	}) 
+	})
 </script>
 <style>
 	.outer table {
@@ -95,18 +108,14 @@
 		</table>
 		<br>
 		<table border="1">
-			<thead id="rhead">
+			<thead>
 				<c:choose>
 					<c:when test="${loginUser != null}">
-						<form id="rFrm">
-							<tr>
-								<th width="100">댓글작성</th>
-								<th width="400"><textarea cols="53" rows="3" name="content" id="content"></textarea></th>
-								<th width="100"><button id="replyInsert">등록</button></th>
-							</tr>
-							<input type="hidden" name="bnum" value="${b.boardNo}">
-							<input type="hidden" name="userId" value="${loginUser.userId}">
-						</form>
+						<tr>
+							<th width="100">댓글작성</th>
+							<th width="400"><textarea cols="53" rows="3" id="content"></textarea></th>
+							<th width="100"><button id="replyInsert">등록</button></th>
+						</tr>
 					</c:when>
 					<c:otherwise>
 						<tr>
